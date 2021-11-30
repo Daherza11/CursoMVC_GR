@@ -1,0 +1,25 @@
+﻿@model biblioteca.Models.libro
+@{
+    ViewBag.Title = "Editar";
+}
+<div class="container">
+    <h2>Editar Libro</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        if (TempData["mensaje"] != null)
+        {
+            Html.RenderPartial("_alertadeexito");
+        }
+        @Html.HiddenFor(model => model.idlibro)
+        <div class="form-horizontal">
+            @Html.Partial("_form", Model)
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    @Html.ActionLink("Volver al listado","Index")
+                </div>
+            </div>
+        </div>
+    }
+</div>

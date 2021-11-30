@@ -1,0 +1,59 @@
+﻿@model IEnumerable<biblioteca.Models.prestamo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cliente.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.libro.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_salida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_devolucion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.libro.titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_salida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_devolucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idprestamo }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idprestamo }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idprestamo }) |
+            @Html.ActionLink("Retornar", "Retorno", new { id = item.idprestamo })
+        </td>
+    </tr>
+}
+
+</table>

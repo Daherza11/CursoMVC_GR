@@ -1,0 +1,38 @@
+﻿@model IEnumerable<biblioteca.Models.libro>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <h2 class="text-center">Libros</h2>
+    <p class="text-right">
+        @Html.ActionLink("Nuevo","New",null,new {@class="btn btn-primary"})
+    </p>
+
+    <table class="table table-bordered table-striped text-center">
+        <tr>
+            <th class="text-center">@Html.DisplayNameFor(model => model.titulo)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.autor)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.paginas)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.estado)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.fecha_pub)</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(ModelItem => item.titulo)</td>
+                <td>@Html.DisplayFor(ModelItem => item.autor)</td>
+                <td>@Html.DisplayFor(ModelItem => item.paginas)</td>
+                <td>@Html.DisplayFor(ModelItem => item.estado)</td>
+                <td>@Html.DisplayFor(ModelItem => item.fecha_pub)</td>
+                <td>
+                    @using (Html.BeginForm("Delete", "libros", new { id = item.idlibro }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idlibro }, new { @class = "btn btn-success" })
+                        <input type="submit" value="Borrar" class="btn btn-danger" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
